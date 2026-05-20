@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bússola — O material que vai revolucionar os seus estudos de inglês</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --midnight: #122C4F; --midnight-deep: #0B1F38; --pearl: #FBF9E4;
+  --ocean: #5B88B2; --ocean-light: #A8C4DC; --noir: #0D0D0D;
+  --mist: #F5F3E8; --sand: #E8E4CC; --text-dark: #1C1A17;
+  --text-soft: #4A4640; --serif: 'Playfair Display', Georgia, serif;
+  --sans: 'DM Sans', sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); background: var(--pearl); color: var(--text-dark); overflow-x: hidden; }
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 48px; background: rgba(251,249,228,0.92);
+  backdrop-filter: blur(12px); border-bottom: 1px solid rgba(18,44,79,0.08);
+}
+.nav-logo { font-family: var(--serif); font-size: 22px; font-weight: 500; color: var(--midnight); }
+.nav-logo span { color: var(--ocean); }
+.nav-cta {
+  background: var(--midnight); color: var(--pearl); font-size: 13px;
+  font-weight: 500; padding: 10px 24px; border-radius: 2px;
+  text-decoration: none; letter-spacing: 0.04em; transition: background 0.2s;
+}
+.nav-cta:hover { background: var(--ocean); }
+
+.hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; position: relative; overflow: hidden; }
+.hero-left {
+  background: var(--midnight); display: flex; flex-direction: column;
+  justify-content: center; padding: 140px 64px 80px; position: relative;
+}
+.hero-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ocean-light); margin-bottom: 24px; }
+.hero-title { font-family: var(--serif); font-size: clamp(36px, 4vw, 56px); font-weight: 400; color: var(--pearl); line-height: 1.15; margin-bottom: 28px; }
+.hero-title em { font-style: italic; color: var(--ocean-light); }
+.hero-sub { font-size: 16px; font-weight: 300; color: rgba(251,249,228,0.65); line-height: 1.75; max-width: 420px; margin-bottom: 48px; }
+.btn-primary {
+  display: inline-block; background: var(--pearl); color: var(--midnight);
+  font-size: 14px; font-weight: 600; padding: 16px 36px; border-radius: 2px;
+  text-decoration: none; letter-spacing: 0.05em; transition: all 0.2s; align-self: flex-start;
+}
+.btn-primary:hover { background: var(--ocean-light); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+
+.hero-right {
+  background: var(--mist); display: flex; align-items: center;
+  justify-content: center; padding: 120px 64px 80px; position: relative; overflow: hidden;
+}
+.hero-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+.hero-photo-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(18,44,79,0.2) 0%, rgba(18,44,79,0.05) 100%); z-index: 1; }
+.hero-card {
+  background: white; border-radius: 4px; padding: 36px; max-width: 320px;
+  box-shadow: 0 24px 80px rgba(18,44,79,0.2); position: relative; z-index: 2;
+}
+.hero-card-label { font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ocean); margin-bottom: 14px; }
+.hero-card h3 { font-family: var(--serif); font-size: 20px; font-weight: 500; color: var(--midnight); margin-bottom: 10px; line-height: 1.3; }
+.hero-card p { font-size: 13px; color: var(--text-soft); line-height: 1.7; margin-bottom: 16px; }
+.hero-card-tag { display: inline-block; background: var(--mist); color: var(--midnight); font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 20px; margin-right: 4px; margin-bottom: 4px; border: 1px solid var(--sand); }
+.hero-modules { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--sand); }
+.hero-module-item { display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--text-soft); padding: 4px 0; }
+.hero-module-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--ocean); flex-shrink: 0; }
+
+section { padding: 100px 48px; }
+.section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ocean); margin-bottom: 20px; }
+.section-title { font-family: var(--serif); font-size: clamp(32px, 4vw, 52px); font-weight: 400; line-height: 1.2; color: var(--midnight); margin-bottom: 24px; }
+.section-title em { font-style: italic; }
+.section-body { font-size: 17px; font-weight: 300; line-height: 1.85; color: var(--text-soft); max-width: 640px; }
+.section-body p + p { margin-top: 20px; }
+
+.dor { background: var(--midnight); color: var(--pearl); }
+.dor-inner { max-width: 760px; margin: 0 auto; text-align: center; }
+.dor .section-label { color: var(--ocean-light); }
+.dor .section-title { color: var(--pearl); max-width: 100%; }
+.dor .section-body { color: rgba(251,249,228,0.7); max-width: 100%; margin: 0 auto; font-size: 18px; }
+.dor-divider { width: 40px; height: 1px; background: var(--ocean); margin: 40px auto; }
+
+.oque { background: var(--pearl); display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; padding: 100px 80px; }
+.oque-cards { display: flex; flex-direction: column; gap: 20px; padding-top: 8px; }
+.oque-card { background: white; border: 1px solid var(--sand); border-radius: 4px; padding: 28px 32px; transition: box-shadow 0.2s, transform 0.2s; }
+.oque-card:hover { box-shadow: 0 8px 32px rgba(18,44,79,0.08); transform: translateY(-2px); }
+.oque-icon { font-size: 22px; margin-bottom: 12px; }
+.oque-card h4 { font-family: var(--serif); font-size: 17px; font-weight: 500; color: var(--midnight); margin-bottom: 8px; }
+.oque-card p { font-size: 14px; color: var(--text-soft); line-height: 1.7; }
+
+.foto-lateral { background: var(--mist); display: grid; grid-template-columns: 1fr 1fr; min-height: 500px; overflow: hidden; }
+.foto-lateral-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.foto-lateral-content { display: flex; flex-direction: column; justify-content: center; padding: 80px 64px; }
+.foto-lateral-content .section-title { font-size: clamp(28px, 3vw, 44px); }
+
+.trilha { background: var(--mist); padding: 100px 80px; }
+.trilha-inner { max-width: 1100px; margin: 0 auto; }
+.trilha-header { margin-bottom: 64px; }
+.trilha-modules { display: flex; flex-direction: column; gap: 2px; }
+.trilha-item { display: grid; grid-template-columns: 240px 1fr; background: white; border: 1px solid var(--sand); border-radius: 4px; overflow: hidden; transition: box-shadow 0.2s; }
+.trilha-item:hover { box-shadow: 0 8px 32px rgba(18,44,79,0.08); }
+.trilha-left { background: var(--midnight); padding: 32px 28px; display: flex; flex-direction: column; justify-content: center; }
+.trilha-level { font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ocean-light); margin-bottom: 8px; }
+.trilha-name { font-family: var(--serif); font-size: 22px; font-weight: 500; color: var(--pearl); line-height: 1.2; }
+.trilha-right { padding: 32px 40px; }
+.trilha-subtitle { font-family: var(--serif); font-size: 15px; font-style: italic; color: var(--ocean); margin-bottom: 12px; line-height: 1.5; }
+.trilha-desc { font-size: 14px; color: var(--text-soft); line-height: 1.75; }
+
+.porque { background: var(--pearl); padding: 100px 80px; }
+.porque-header { margin-bottom: 16px; }
+.porque-intro { font-size: 18px; font-weight: 300; color: var(--text-soft); line-height: 1.75; max-width: 680px; margin-bottom: 64px; }
+.porque-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+.porque-num { font-family: var(--serif); font-size: 48px; font-weight: 400; color: var(--sand); line-height: 1; margin-bottom: 16px; }
+.porque-item h4 { font-family: var(--serif); font-size: 18px; font-weight: 500; color: var(--midnight); margin-bottom: 12px; }
+.porque-item p { font-size: 14px; color: var(--text-soft); line-height: 1.75; }
+
+.paraquem { background: var(--midnight); padding: 100px 80px; }
+.paraquem-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; max-width: 1100px; margin: 0 auto; align-items: start; }
+.paraquem .section-label { color: var(--ocean-light); }
+.paraquem .section-title { color: var(--pearl); }
+.paraquem-list { list-style: none; margin-top: 32px; }
+.paraquem-list li { display: flex; align-items: flex-start; gap: 16px; font-size: 15px; color: rgba(251,249,228,0.75); line-height: 1.65; padding: 14px 0; border-bottom: 1px solid rgba(251,249,228,0.08); }
+.paraquem-list li:last-child { border-bottom: none; }
+.paraquem-check { color: var(--ocean-light); font-weight: 600; flex-shrink: 0; margin-top: 2px; }
+.paraquem-list.nao li { color: rgba(251,249,228,0.4); }
+.paraquem-list.nao .paraquem-check { color: rgba(251,249,228,0.25); }
+
+.sobre { background: var(--pearl); display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; padding: 100px 80px; }
+.sobre-visual { position: relative; border-radius: 4px; overflow: hidden; }
+.sobre-photo { width: 100%; height: 580px; object-fit: cover; object-position: center top; border-radius: 4px; display: block; }
+.sobre-stats-overlay {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(18,44,79,0.95) 0%, transparent 100%);
+  padding: 48px 32px 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+}
+.sobre-stat-num { display: block; font-family: var(--serif); font-size: 28px; font-weight: 500; color: var(--pearl); line-height: 1; margin-bottom: 4px; }
+.sobre-stat-label { display: block; font-size: 11px; color: var(--ocean-light); letter-spacing: 0.04em; }
+
+.faq { background: var(--mist); padding: 100px 80px; }
+.faq-inner { max-width: 760px; margin: 0 auto; }
+.faq-header { margin-bottom: 56px; }
+.faq-item { padding: 28px 0; border-bottom: 1px solid var(--sand); }
+.faq-item:last-child { border-bottom: none; }
+.faq-q { font-family: var(--serif); font-size: 18px; font-weight: 500; color: var(--midnight); margin-bottom: 12px; line-height: 1.4; }
+.faq-a { font-size: 15px; color: var(--text-soft); line-height: 1.75; font-weight: 300; }
+
+.cta-final { background: var(--midnight); padding: 120px 48px; text-align: center; position: relative; overflow: hidden; }
+.cta-final::before { content: ''; position: absolute; width: 600px; height: 600px; border: 1px solid rgba(91,136,178,0.12); border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.cta-final::after { content: ''; position: absolute; width: 400px; height: 400px; border: 1px solid rgba(91,136,178,0.08); border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.cta-final-inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
+.cta-final h2 { font-family: var(--serif); font-size: clamp(36px, 5vw, 60px); font-weight: 400; color: var(--pearl); line-height: 1.2; margin-bottom: 24px; }
+.cta-final h2 em { font-style: italic; color: var(--ocean-light); }
+.cta-final p { font-size: 17px; font-weight: 300; color: rgba(251,249,228,0.65); line-height: 1.8; margin-bottom: 48px; }
+.btn-cta-final { display: inline-block; background: var(--pearl); color: var(--midnight); font-size: 15px; font-weight: 600; padding: 18px 48px; border-radius: 2px; text-decoration: none; letter-spacing: 0.05em; transition: all 0.2s; }
+.btn-cta-final:hover { background: var(--ocean-light); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
+.cta-tagline { display: block; margin-top: 20px; font-size: 12px; font-style: italic; color: rgba(251,249,228,0.35); letter-spacing: 0.04em; }
+
+footer { background: var(--noir); padding: 40px 48px; display: flex; align-items: center; justify-content: space-between; }
+.footer-logo { font-family: var(--serif); font-size: 18px; color: rgba(251,249,228,0.6); }
+.footer-logo span { color: var(--ocean); }
+.footer-copy { font-size: 12px; color: rgba(251,249,228,0.25); font-weight: 300; }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+.hero-eyebrow { animation: fadeUp 0.6s ease both; }
+.hero-title { animation: fadeUp 0.6s 0.1s ease both; }
+.hero-sub { animation: fadeUp 0.6s 0.2s ease both; }
+.btn-primary { animation: fadeUp 0.6s 0.3s ease both; }
+
+@media (max-width: 900px) {
+  nav { padding: 16px 24px; }
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-left { padding: 120px 32px 60px; }
+  .hero-right { display: none; }
+  section { padding: 72px 24px; }
+  .oque { grid-template-columns: 1fr; gap: 48px; padding: 72px 24px; }
+  .foto-lateral { grid-template-columns: 1fr; }
+  .foto-lateral-img { height: 320px; }
+  .foto-lateral-content { padding: 48px 24px; }
+  .trilha { padding: 72px 24px; }
+  .trilha-item { grid-template-columns: 1fr; }
+  .trilha-left { padding: 28px 28px 16px; }
+  .trilha-right { padding: 20px 28px 32px; }
+  .porque { padding: 72px 24px; }
+  .porque-grid { grid-template-columns: 1fr; gap: 32px; }
+  .paraquem { padding: 72px 24px; }
+  .paraquem-inner { grid-template-columns: 1fr; gap: 48px; }
+  .sobre { grid-template-columns: 1fr; gap: 48px; padding: 72px 24px; }
+  .sobre-photo { height: 400px; }
+  .faq { padding: 72px 24px; }
+  footer { flex-direction: column; gap: 12px; text-align: center; padding: 32px 24px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Bússola<span>.</span></div>
+  <a href="#cta" class="nav-cta">Quero a minha Bússola</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <h1 class="hero-title">O material que vai <em>revolucionar</em> os seus estudos de inglês.</h1>
+    <p class="hero-sub">Mais de 50 planos de estudos para mulheres que querem inserir o inglês na rotina — mesmo com pouco tempo — com materiais autênticos e atividades eficazes.</p>
+    <a href="#cta" class="btn-primary">Quero a minha Bússola →</a>
+  </div>
+  <div class="hero-right">
+    <img src="foto_sofa3.jpeg" alt="Paloma Fonseca ensinando inglês" class="hero-photo">
+    <div class="hero-photo-overlay"></div>
+    <div class="hero-card">
+      <p class="hero-card-label">O que você vai encontrar</p>
+      <h3>Mais de 50 planos de estudos progressivos</h3>
+      <p>Do A1 ao C1. Cada plano tem 5 dias de atividades com músicas, textos, podcasts e vídeos reais.</p>
+      <div>
+        <span class="hero-card-tag">🎵 Taylor Swift</span>
+        <span class="hero-card-tag">📝 Substack</span>
+        <span class="hero-card-tag">🎬 TikTok</span>
+        <span class="hero-card-tag">📰 NY Times</span>
+      </div>
+      <div class="hero-modules">
+        <div class="hero-module-item"><div class="hero-module-dot"></div>Baby Steps — A1</div>
+        <div class="hero-module-item"><div class="hero-module-dot"></div>Fearless — A2</div>
+        <div class="hero-module-item"><div class="hero-module-dot"></div>Speak Now — B1</div>
+        <div class="hero-module-item"><div class="hero-module-dot"></div>Ready, Steady, Go — B2</div>
+        <div class="hero-module-item"><div class="hero-module-dot"></div>The Fluent Department — C1</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dor">
+  <div class="dor-inner">
+    <h2 class="section-title"><em>Você não precisa de mais horas no seu dia pra aprender inglês…</em></h2>
+    <div class="dor-divider"></div>
+    <div class="section-body">
+      <p>Talvez você só precise de um método que funcione melhor com o tempo que você já tem.</p>
+      <p>O inglês não precisa esperar sua vida acalmar.
+Eu sei que você já deixou o inglês pra depois.
+"Quando eu tiver mais tempo, eu começo."
+"Quando o trabalho estiver mais tranquilo, eu começo."</p>
+      <p>Mas esse momento ideal nunca chegou.
+Porque a vida real não costuma abrir um espaço perfeito na agenda só pra você estudar.
+É exatamente por isso que a Bússola nasceu.
+A Bússola foi criada pra mulheres reais — que têm vida, compromisso, trabalho — e que mesmo assim querem tirar o inglês do "depois".
+</p>
+      <p>Com a Bússola você tem:
+— uma trilha completa de estudos
+— os materiais certos pra cada etapa
+— uma atividade por dia, sem precisar improvisar
+— aulas onde eu te ensino as melhores técnicas pra praticar cada habilidade
+Porque quando o método depende de você "parar a vida" pra estudar, qualquer imprevisto vira motivo pra desistir.
+Mas quando o inglês entra de forma leve, prática e conectada com sua rotina — ele deixa de ser uma promessa distante e começa a virar parte do seu dia.</p>
+    </div>
+  </div>
+</section>
+
+<section class="oque">
+  <div class="oque-text">
+    <h2 class="section-title">O que é a Bússola?</h2>
+    <div class="section-body">
+      <p>A Bússola é uma biblioteca de mais de 50 planos de estudos de inglês criados especialmente para mulheres adultas — estruturados, progressivos e pensados para caber na sua rotina real.</p>
+      <p>Porque aprender inglês com o que você já consome torna o aprendizado mais significativo. trabalhar o mesmo conteúdo sob óticas diferentes é o que faz o conteúdo consolidar de verdade, essa é a revisão espaçada na prática</p>
+      <p>Você não precisa estudar todo dia. Você não precisa ser perfeita. Você só precisa saber para onde ir.</p>
+    </div>
+  </div>
+  <div class="oque-cards">
+    <div class="oque-card">
+      <div class="oque-icon">🧭</div>
+      <h4>Estrutura real</h4>
+      <p>Cada plano tem começo, meio e fim. Você sabe exatamente o que fazer em cada dia de estudo — sem improvisar, sem perder tempo.</p>
+    </div>
+    <div class="oque-card">
+      <div class="oque-icon">🎵</div>
+      <h4>Material que você já ama</h4>
+      <p>Taylor Swift, Kiki's Substack, NY Times, TikTok. O inglês que você vai aprender na Bússola vive nos mesmos lugares que você já frequenta.</p>
+    </div>
+    <div class="oque-card">
+      <div class="oque-icon">📈</div>
+      <h4>Progressão que faz sentido</h4>
+      <p>Os planos seguem uma trilha do A1 ao C1. Você começa do seu nível e avança no seu ritmo — sem pressa, sem pular etapas.</p>
+    </div>
+  </div>
+</section>
+
+<div class="foto-lateral">
+  <img src="foto_laptop.jpeg" alt="Estudando com a Bússola" class="foto-lateral-img">
+  <div class="foto-lateral-content">
+    <p class="section-label">A metodologia</p>
+    <h2 class="section-title">Aprenda com o que você já consome.</h2>
+    <div class="section-body">
+      <p>Cada plano começa com material autêntico — uma música, um texto, um vídeo. Você ouve, lê, analisa, escreve e fala usando o mesmo contexto ao longo de toda a semana. trabalhar o mesmo conteúdo sob óticas diferentes é o que faz o conteúdo consolidar de verdade, essa é a revisão espaçada na prática.</p>
+    </div>
+  </div>
+</div>
+
+<section class="trilha">
+  <div class="trilha-inner">
+    <div class="trilha-header">
+      <p class="section-label">A trilha</p>
+      <h2 class="section-title">De onde você está<br><em>até onde você quer chegar.</em></h2>
+    </div>
+    <div class="trilha-modules">
+      <div class="trilha-item">
+        <div class="trilha-left"><p class="trilha-level">A1 · Iniciante</p><p class="trilha-name">Baby Steps</p></div>
+        <div class="trilha-right">
+          <p class="trilha-subtitle">"Every big journey starts with a tiny step."</p>
+          <p class="trilha-desc">Para quem está começando do zero ou voltando depois de muito tempo. Aqui você aprende a se apresentar, falar sobre a sua rotina, descrever a sua família e a sua cidade — com material simples, fala lenta e muito espaço para errar sem julgamento.</p>
+        </div>
+      </div>
+      <div class="trilha-item">
+        <div class="trilha-left"><p class="trilha-level">A2 · Elementar</p><p class="trilha-name">Fearless</p></div>
+        <div class="trilha-right">
+          <p class="trilha-subtitle">"This is where confidence finds its voice."</p>
+          <p class="trilha-desc">Para quem já tem uma base e quer começar a ganhar confiança. Aqui você aprende a falar sobre hábitos, viagens, comparações e preferências. A sua voz em inglês começa a ganhar forma.</p>
+        </div>
+      </div>
+      <div class="trilha-item">
+        <div class="trilha-left"><p class="trilha-level">B1 · Intermediário</p><p class="trilha-name">Speak Now</p></div>
+        <div class="trilha-right">
+          <p class="trilha-subtitle">"You're further along than you think."</p>
+          <p class="trilha-desc">Para quem já se comunica mas ainda não acredita nisso. Aqui você aprende a dar opiniões, contar histórias no passado, falar sobre planos e possibilidades. A confiança que faltava começa a aparecer.</p>
+        </div>
+      </div>
+      <div class="trilha-item">
+        <div class="trilha-left"><p class="trilha-level">B2 · Intermediário Avançado</p><p class="trilha-name">Ready, Steady, Go</p></div>
+        <div class="trilha-right">
+          <p class="trilha-subtitle">"The woman who said 'I can't speak English' is already gone."</p>
+          <p class="trilha-desc">Para quem quer dar o salto para o nível avançado. Aqui você trabalha narrativas complexas, argumentação, condicionais, phrasal verbs e nuances de linguagem que fazem toda a diferença.</p>
+        </div>
+      </div>
+      <div class="trilha-item">
+        <div class="trilha-left"><p class="trilha-level">C1 · Avançado</p><p class="trilha-name">The Fluent Department</p></div>
+        <div class="trilha-right">
+          <p class="trilha-subtitle">"Welcome to the league of women who speak up."</p>
+          <p class="trilha-desc"> Bem vinda ao departamento de mulheres que não tem medo de mostrar a sua voz.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="porque">
+  <div class="porque-header">
+    <p class="section-label">A metodologia</p>
+    <h2 class="section-title">Por que a Bússola funciona?</h2>
+  </div>
+  <p class="porque-intro">Não porque tem mais conteúdo. Não porque é mais difícil. Mas porque foi construída a partir de uma pergunta diferente: como uma mulher adulta, com rotina cheia e cabeça ocupada, realmente aprende inglês?</p>
+  <div class="porque-grid">
+    <div class="porque-item">
+      <p class="porque-num">01</p>
+      <h4>Input autêntico</h4>
+      <p>A pesquisa em aquisição de linguagem é clara: você aprende mais rápido quando o material é real, não fabricado. Por isso cada plano usa músicas, textos do Substack, vídeos do TikTok e artigos do NY Times — não como ilustração, mas como base.</p>
+    </div>
+    <div class="porque-item">
+      <p class="porque-num">02</p>
+      <h4>Chunks em contexto</h4>
+      <p>A Bússola é baseada no Lexical Approach: você não aprende palavras isoladas, você aprende expressões completas — chunks — dentro de um contexto real. É o que faz a palavra sair antes que você precise procurar.</p>
+    </div>
+    <div class="porque-item">
+      <p class="porque-num">03</p>
+      <h4>Speaking desde o primeiro dia</h4>
+      <p>Os planos foram desenvolvidos para que você vá além de só consumir conteúdos em inglês, aqui você vai colocar muito a mão na massa.</p>
+    </div>
+    <div class="porque-item">
+      <p class="porque-num">04</p>
+      <h4>Feito para a sua rotina</h4>
+      <p>Cinco dias por semana, com atividades de 20 a 40 minutos. Sem exigir perfeição, sem cobrar sequência rígida. A Bússola foi pensada para mulheres que têm vida — e que ainda assim querem chegar lá.</p>
+    </div>
+    <div class="porque-item">
+      <p class="porque-num">05</p>
+      <h4>Uma professora por trás de cada plano</h4>
+      <p>Cada plano foi criado e revisado por mim — professora com mais de 9 anos de experiência no ensino de inglês para mulheres adultas. Não é conteúdo genérico. É metodologia com intenção e cuidado.</p>
+    </div>
+  </div>
+</section>
+
+<section class="paraquem">
+  <div class="paraquem-inner">
+    <div>
+      <h2 class="section-title">A Bússola é para você se...</h2>
+      <ul class="paraquem-list">
+        <li><span class="paraquem-check">→</span> Você entende inglês quando lê, mas trava na hora de falar</li>
+        <li><span class="paraquem-check">→</span> Você já tentou aprender antes — e desistiu por não saber por onde continuar</li>
+        <li><span class="paraquem-check">→</span> Você tem uma rotina corrida e precisa de um plano que caiba na sua vida real</li>
+        <li><span class="paraquem-check">→</span> Você aprende melhor com conteúdo que ama do que com exercícios de livro didático</li>
+        <li><span class="paraquem-check">→</span> Você quer mais do que vocabulário — quer se sentir capaz de ter uma conversa real</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sobre">
+  <div class="sobre-text">
+    <p class="section-label">A professora</p>
+    <h2 class="section-title">Quem criou a Bússola?</h2>
+    <div class="section-body">
+      <p>Oi, eu sou a Paloma. Professora de inglês, criadora de conteúdo e a pessoa que passou anos vendo mulheres incríveis se diminuírem por causa do inglês.</p>
+      <p>Com mais de 9 anos de experiência no ensino de inglês para adultos, trabalho com um método que não tem como objetivo a gramática, muito menos decorar listas e listas de vocabulário. Aqui você aprende inglês de forma contextualizada, autêntica e prática.</p>
+      <p>A Bússola é o produto que eu queria ter tido quando aprendi inglês. Criado com cuidado, técnicas e atualizado constantemente, porque a língua é viva e o seu método de estudo também precisa ser.</p>
+    </div>
+  </div>
+  <div class="sobre-visual">
+    <img src="foto_mesa.jpeg" alt="Paloma Fonseca" class="sobre-photo">
+    <div class="sobre-stats-overlay">
+      <div class="sobre-stat">
+        <span class="sobre-stat-num">9+</span>
+        <span class="sobre-stat-label">anos de experiência</span>
+      </div>
+      <div class="sobre-stat">
+        <span class="sobre-stat-num">50+</span>
+        <span class="sobre-stat-label">planos de estudos</span>
+      </div>
+      <div class="sobre-stat">
+        <span class="sobre-stat-num">5</span>
+        <span class="sobre-stat-label">módulos A1 → C1</span>
+      </div>
+      <div class="sobre-stat">
+        <span class="sobre-stat-num">100%</span>
+        <span class="sobre-stat-label">para mulheres adultas</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="faq-inner">
+    <div class="faq-header">
+      <p class="section-label">Dúvidas</p>
+      <h2 class="section-title">Perguntas frequentes</h2>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Preciso ter algum conhecimento prévio de inglês?</p>
+      <p class="faq-a">Não. A trilha começa do zero — o Baby Steps foi criado exatamente para quem está voltando do início ou nunca teve uma base sólida.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Quantas horas por semana preciso estudar?</p>
+      <p class="faq-a">Cada day de plano foi pensado para durar entre 20 e 40 minutos. Se você estudar 3 vezes por semana já vai sentir progresso. Se puder fazer os 5 days, melhor ainda — mas a Bússola não te pune por ter uma semana corrida.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">A Bússola substitui uma aula com professora?</p>
+      <p class="faq-a">Não — e não tenta. A Bússola é uma estrutura de estudos autônomos. Ela organiza o seu tempo e direciona o seu esforço. Para quem quer o acompanhamento de uma professora, existe a opção de aulas individuais com a Paloma.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Posso usar no celular?</p>
+      <p class="faq-a">Sim. A Bússola fica no Notion, que tem aplicativo para celular e funciona bem em qualquer dispositivo.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Por quanto tempo tenho acesso?</p>
+      <p class="faq-a">Em breve — os detalhes de acesso serão informados na página de compra.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final" id="cta">
+  <div class="cta-final-inner">
+    <h2>Você já esperou <em>tempo suficiente.</em></h2>
+    <p>O inglês que você quer falar não vai aparecer sozinho. Mas com a direção certa, ele aparece mais rápido do que você imagina. A Bússola não promete fluência em 30 dias. Promete estrutura, progressão e um plano que respeita a sua rotina.</p>
+    <a href="#" class="btn-cta-final">Quero a minha Bússola →</a>
+    <span class="cta-tagline">O material que vai revolucionar os seus estudos de inglês.</span>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Bússola<span>.</span></div>
+  <p class="footer-copy">© 2026 Paloma Fonseca · @teacherpalomafonseca · Todos os direitos reservados</p>
+</footer>
+
+</body>
+</html>

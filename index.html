@@ -170,25 +170,34 @@ footer { background: var(--noir); padding: 40px 48px; display: flex; align-items
 
 @media (max-width: 900px) {
   nav { padding: 16px 24px; }
-  .hero { grid-template-columns: 1fr; min-height: auto; }
-  .hero-left { padding: 120px 32px 60px; }
-   .hero-right {
-    display: block;
-    height: 320px;
-    padding: 0;
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .hero-left {
+    min-height: auto;
+    padding: 120px 32px 56px;
+  }
+
+  .hero-right {
+    min-height: 560px;
+    padding: 32px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
     position: relative;
+    overflow: hidden;
   }
-  .hero-card { display: none; }
-  .hero-photo {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 50%;
+
+  .hero-card {
+    display: block;
+    width: min(100%, 430px);
+    max-width: 430px;
+    padding: 28px;
+    margin: 0 auto;
+    box-shadow: 0 18px 60px rgba(18,44,79,0.28);
   }
-  .hero-photo-overlay { position: absolute; inset: 0; }
-}
   section { padding: 72px 24px; }
   .oque { grid-template-columns: 1fr; gap: 48px; padding: 72px 24px; }
   .foto-lateral { grid-template-columns: 1fr; }
@@ -206,6 +215,7 @@ footer { background: var(--noir); padding: 40px 48px; display: flex; align-items
   .sobre-photo { height: 400px; }
   .faq { padding: 72px 24px; }
   footer { flex-direction: column; gap: 12px; text-align: center; padding: 32px 24px; }
+}
 </style>
 </head>
 <body>

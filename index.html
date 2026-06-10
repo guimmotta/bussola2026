@@ -172,7 +172,23 @@ footer { background: var(--noir); padding: 40px 48px; display: flex; align-items
   nav { padding: 16px 24px; }
   .hero { grid-template-columns: 1fr; min-height: auto; }
   .hero-left { padding: 120px 32px 60px; }
-  .hero-right { display: none; }
+   .hero-right {
+    display: block;
+    height: 320px;
+    padding: 0;
+    position: relative;
+  }
+  .hero-card { display: none; }
+  .hero-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 50%;
+  }
+  .hero-photo-overlay { position: absolute; inset: 0; }
+}
   section { padding: 72px 24px; }
   .oque { grid-template-columns: 1fr; gap: 48px; padding: 72px 24px; }
   .foto-lateral { grid-template-columns: 1fr; }
@@ -190,7 +206,6 @@ footer { background: var(--noir); padding: 40px 48px; display: flex; align-items
   .sobre-photo { height: 400px; }
   .faq { padding: 72px 24px; }
   footer { flex-direction: column; gap: 12px; text-align: center; padding: 32px 24px; }
-}
 </style>
 </head>
 <body>
